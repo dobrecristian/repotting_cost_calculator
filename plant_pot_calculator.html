@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator Volum Ghiveci & Repotting Cost</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    h2 { color: #3e8e41; }
+    input, label { margin-top: 10px; display: block; width: 100%; }
+    button { margin-top: 15px; padding: 10px 15px; background: #3e8e41; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .result { margin-top: 20px; font-weight: bold; }
+    img { margin-top: 20px; max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>🪴 Calculator Volum Ghiveci & Repotting Cost</h2>
+  
+  <label>Diametrul ghiveciului (cm): 
+    <input type="number" id="diameter" />
+  </label>
+  
+  <label>Înălțimea ghiveciului (cm): 
+    <input type="number" id="height" />
+  </label>
+  
+  <label>Preț per litru de mix de sol (RON): 
+    <input type="number" id="pricePerLiter" step="0.01" />
+  </label>
+  
+  <button onclick="calculate()">Calculează</button>
+
+  <div class="result" id="volumeResult"></div>
+  <div class="result" id="priceResult"></div>
+
+  <img src="https://file.app.ikea.cn/cn/en/images/products/citrusfrukt-plant-pot-with-saucer-in-outdoor-grey__1126483_pe875747_s5.jpg" alt="How to measure a plant pot - diagram" />
+
+  <script>
+    function calculate() {
+      const d = parseFloat(document.getElementById("diameter").value);
+      const h = parseFloat(document.getElementById("height").value);
+      const pricePerLiter = parseFloat(document.getElementById("pricePerLiter").value);
+
+      if (!d || !h || !pricePerLiter) {
+        alert("Te rog completează toate câmpurile.");
+        return;
+      }
+
+      const r = d / 2;
+      const volume = Math.PI * r * r * h / 1000; // volume in liters
+      const cost = volume * pricePerLiter;
+
+      document.getElementById("volumeResult").innerText = `🧪 Volum: ${volume.toFixed(2)} litri`;
+      document.getElementById("priceResult").innerText = `💰 Cost estimativ mix de sol: ${cost.toFixed(2)} RON`;
+    }
+  </script>
+</body>
+</html>
