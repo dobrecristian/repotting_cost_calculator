@@ -27,6 +27,9 @@
   <label>Preț per litru de mix de sol (RON): 
     <input type="number" id="pricePerLiter" step="0.01" />
   </label>
+
+  <label><input type="checkbox" id="bioNeem" /> Tratament BioNeem (+25 RON)</label>
+  <label><input type="checkbox" id="minimumFee" /> Taxă minimă intervenție (+25 RON)</label>
   
   <button onclick="calculate()">Calculează</button>
 
@@ -40,6 +43,8 @@
       const d = parseFloat(document.getElementById("diameter").value);
       const h = parseFloat(document.getElementById("height").value);
       const pricePerLiter = parseFloat(document.getElementById("pricePerLiter").value);
+      const addBioNeem = document.getElementById("bioNeem").checked;
+      const addMinimumFee = document.getElementById("minimumFee").checked;
 
       if (!d || !h || !pricePerLiter) {
         alert("Te rog completează toate câmpurile.");
@@ -48,7 +53,10 @@
 
       const r = d / 2;
       const volume = Math.PI * r * r * h / 1000; // volume in liters
-      const cost = volume * pricePerLiter;
+      let cost = volume * pricePerLiter;
+
+      if (addBioNeem) cost += 25;
+      if (addMinimumFee) cost += 25;
 
       document.getElementById("volumeResult").innerText = `🧪 Volum: ${volume.toFixed(2)} litri`;
       document.getElementById("priceResult").innerText = `💰 Cost estimativ repotting: ${cost.toFixed(2)} RON`;
