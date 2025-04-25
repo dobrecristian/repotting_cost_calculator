@@ -86,6 +86,40 @@
       border: 2px solid #a5d6a7;
       border-radius: 10px;
     }
+
+    /* Collapsible button styles */
+    .collapsible {
+      background-color: #66bb6a;
+      color: white;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .collapsible:after {
+      content: ' ▼';
+    }
+
+    .active:after {
+      content: ' ▲';
+    }
+
+    .content {
+      padding: 10px;
+      display: none;
+      overflow: hidden;
+      background-color: #f1f1f1;
+    }
+
+    .content img {
+      width: 100%;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -108,6 +142,16 @@
       <td>Preț mix de sol (RON/litru):</td>
       <td><input type="number" id="pricePerLiter" step="0.01" /></td>
     </tr>
+    <!-- Collapsible button starts here -->
+    <tr>
+      <td colspan="2">
+        <button class="collapsible">Cum sa masori un ghiveci</button>
+        <div class="content">
+          <img src="https://i.imgur.com/XwDhsjJ.png" alt="Cum sa masori un ghiveci">
+        </div>
+      </td>
+    </tr>
+    <!-- Collapsible button ends here -->
     <tr><th colspan="2">🌼 Extras & Tratamente</th></tr>
     <tr>
       <td><label>Tratament BioNeem</label></td>
@@ -159,6 +203,20 @@
   <div id="breakdownTable"></div>
 
 <script>
+  // Collapsible button script
+  var coll = document.getElementsByClassName("collapsible");
+  for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+
   function calculate() {
     const d = parseFloat(document.getElementById("diameter").value);
     const h = parseFloat(document.getElementById("height").value);
