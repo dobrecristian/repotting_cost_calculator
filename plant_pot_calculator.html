@@ -5,36 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculator Volum Ghiveci & Repotting Cost</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
     h2 { color: #3e8e41; }
-    input, label { margin-top: 10px; display: block; width: 100%; }
+    label, input, select { margin-top: 10px; display: block; width: 100%; }
     button { margin-top: 15px; padding: 10px 15px; background: #3e8e41; color: white; border: none; border-radius: 5px; cursor: pointer; }
     .result { margin-top: 20px; font-weight: bold; }
+    table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 10px; text-align: left; }
+    th { background-color: #f5f5f5; }
     img { margin-top: 20px; max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; }
   </style>
 </head>
 <body>
   <h2>🪴 Calculator Volum Ghiveci & Repotting Cost</h2>
-  
-  <label>Diametrul ghiveciului (cm): 
-    <input type="number" id="diameter" />
-  </label>
-  
-  <label>Înălțimea ghiveciului (cm): 
-    <input type="number" id="height" />
-  </label>
-  
-  <label>Preț per litru de mix de sol (RON): 
-    <input type="number" id="pricePerLiter" step="0.01" />
-  </label>
 
-  <label><input type="checkbox" id="bioNeem" /> Tratament BioNeem (+25 RON)</label>
-  <label><input type="checkbox" id="minimumFee" /> Taxă minimă intervenție (+25 RON)</label>
-  
+  <table>
+    <tr>
+      <td>Diametrul ghiveciului (cm):</td>
+      <td><input type="number" id="diameter" /></td>
+    </tr>
+    <tr>
+      <td>Înălțimea ghiveciului (cm):</td>
+      <td><input type="number" id="height" /></td>
+    </tr>
+    <tr>
+      <td>Preț per litru de mix de sol (RON):</td>
+      <td><input type="number" id="pricePerLiter" step="0.01" /></td>
+    </tr>
+    <tr>
+      <td><label><input type="checkbox" id="bioNeem" /> Tratament BioNeem</label></td>
+      <td>+25 RON</td>
+    </tr>
+    <tr>
+      <td><label><input type="checkbox" id="minimumFee" /> Taxă minimă intervenție</label></td>
+      <td>+25 RON</td>
+    </tr>
+    <tr>
+      <td>Protocol Daunatori:</td>
+      <td><input type="number" id="protocolCount" min="0" value="0" /> x 45 RON</td>
+    </tr>
+    <tr>
+      <td><label><input type="checkbox" id="fertilizare" /> Fertilizare</label></td>
+      <td>+10 RON</td>
+    </tr>
+    <tr>
+      <td><label><input type="checkbox" id="stimulator" /> Stimulator</label></td>
+      <td>+15 RON</td>
+    </tr>
+    <tr>
+      <td><label><input type="checkbox" id="sterilizare" /> Sterilizare</label></td>
+      <td>+45 RON</td>
+    </tr>
+    <tr>
+      <td>Accesorii Extra:</td>
+      <td><input type="number" id="extraAccessories" min="0" value="0" step="0.01" /> RON</td>
+    </tr>
+    <tr>
+      <td>Zile de cazare:</td>
+      <td><input type="number" id="zileCazare" min="0" value="0" /> x 5 RON</td>
+    </tr>
+    <tr>
+      <td colspan="2">Insecticid/Fungicid/Acaricid/Antibacterian (20 RON fiecare):<br>
+        <label><input type="checkbox" class="treatmentOption" /> Insecticid</label>
+        <label><input type="checkbox" class="treatmentOption" /> Fungicid</label>
+        <label><input type="checkbox" class="treatmentOption" /> Acaricid</label>
+        <label><input type="checkbox" class="treatmentOption" /> Antibacterian</label>
+      </td>
+    </tr>
+  </table>
+
   <button onclick="calculate()">Calculează</button>
 
   <div class="result" id="volumeResult"></div>
   <div class="result" id="priceResult"></div>
+  <div id="breakdownTable"></div>
 
   <img src="https://file.app.ikea.cn/cn/en/images/products/citrusfrukt-plant-pot-with-saucer-in-outdoor-grey__1126483_pe875747_s5.jpg" alt="How to measure a plant pot - diagram" />
 
@@ -46,20 +91,86 @@
       const addBioNeem = document.getElementById("bioNeem").checked;
       const addMinimumFee = document.getElementById("minimumFee").checked;
 
+      const protocolCount = parseInt(document.getElementById("protocolCount").value) || 0;
+      const addFert = document.getElementById("fertilizare").checked;
+      const addStim = document.getElementById("stimulator").checked;
+      const addSter = document.getElementById("sterilizare").checked;
+
+      const extraAccessories = parseFloat(document.getElementById("extraAccessories").value) || 0;
+      const zileCazare = parseInt(document.getElementById("zileCazare").value) || 0;
+
+      const treatmentOptions = document.querySelectorAll('.treatmentOption:checked');
+      const treatmentCount = treatmentOptions.length;
+
       if (!d || !h || !pricePerLiter) {
         alert("Te rog completează toate câmpurile.");
         return;
       }
 
       const r = d / 2;
-      const volume = Math.PI * r * r * h / 1000; // volume in liters
-      let cost = volume * pricePerLiter;
+      const volume = Math.PI * r * r * h / 1000;
+      let cost = 0;
 
-      if (addBioNeem) cost += 25;
-      if (addMinimumFee) cost += 25;
+      const breakdown = [];
+
+      const soilCost = volume * pricePerLiter;
+      cost += soilCost;
+      breakdown.push(["Mix de sol", soilCost.toFixed(2) + " RON"]);
+
+      if (addBioNeem) {
+        cost += 25;
+        breakdown.push(["Tratament BioNeem", "25 RON"]);
+      }
+      if (addMinimumFee) {
+        cost += 25;
+        breakdown.push(["Taxă minimă intervenție", "25 RON"]);
+      }
+
+      if (protocolCount > 0) {
+        const val = protocolCount * 45;
+        cost += val;
+        breakdown.push([`Protocol Daunatori x${protocolCount}`, val + " RON"]);
+      }
+
+      if (addFert) {
+        cost += 10;
+        breakdown.push(["Fertilizare", "10 RON"]);
+      }
+      if (addStim) {
+        cost += 15;
+        breakdown.push(["Stimulator", "15 RON"]);
+      }
+      if (addSter) {
+        cost += 45;
+        breakdown.push(["Sterilizare", "45 RON"]);
+      }
+
+      if (extraAccessories > 0) {
+        cost += extraAccessories;
+        breakdown.push(["Accesorii Extra", extraAccessories.toFixed(2) + " RON"]);
+      }
+
+      if (zileCazare > 0) {
+        const val = zileCazare * 5;
+        cost += val;
+        breakdown.push([`Zile de cazare x${zileCazare}`, val + " RON"]);
+      }
+
+      if (treatmentCount > 0) {
+        const val = treatmentCount * 20;
+        cost += val;
+        breakdown.push(["Insecticid/Fungicid/etc", val + " RON"]);
+      }
 
       document.getElementById("volumeResult").innerText = `🧪 Volum: ${volume.toFixed(2)} litri`;
-      document.getElementById("priceResult").innerText = `💰 Cost estimativ repotting: ${cost.toFixed(2)} RON`;
+      document.getElementById("priceResult").innerText = `💰 Cost estimativ total: ${cost.toFixed(2)} RON`;
+
+      let breakdownHTML = "<h3>📊 Detaliere cost:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
+      breakdown.forEach(([desc, val]) => {
+        breakdownHTML += `<tr><td>${desc}</td><td>${val}</td></tr>`;
+      });
+      breakdownHTML += `<tr><th>Total</th><th>${cost.toFixed(2)} RON</th></tr></table>`;
+      document.getElementById("breakdownTable").innerHTML = breakdownHTML;
     }
   </script>
 </body>
