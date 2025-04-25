@@ -3,70 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculator Volum Ghiveci & Repotting Cost</title>
+  <title>🪴 Pot Volume & Repotting Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
-    h2 { color: #3e8e41; }
-    label, input, select { margin-top: 10px; display: block; width: 100%; }
-    button { margin-top: 15px; padding: 10px 15px; background: #3e8e41; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    .result { margin-top: 20px; font-weight: bold; }
-    table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-    table, th, td { border: 1px solid #ccc; }
-    th, td { padding: 10px; text-align: left; }
-    th { background-color: #f5f5f5; }
-    img { margin-top: 20px; max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; }
+    body {
+      background: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png'), #d0f0c0;
+      font-family: 'Quicksand', cursive;
+      font-size: 22px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      color: #2f4f2f;
+    }
+
+    h2 {
+      color: #2e7d32;
+      text-align: center;
+      font-size: 36px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #b5e7a0;
+      color: #2f4f2f;
+    }
+
+    input[type="number"], select {
+      width: 25%;
+      padding: 5px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 1px solid #bbb;
+    }
+
+    label {
+      display: block;
+    }
+
+    button {
+      background-color: #66bb6a;
+      color: white;
+      font-size: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    #breakdownTable table {
+      background-color: #f0fff0;
+    }
+
+    img {
+      display: block;
+      margin: 30px auto;
+      max-width: 100%;
+      border: 2px solid #a5d6a7;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
-  <h2>🪴 Calculator Volum Ghiveci & Repotting Cost</h2>
+  <h2>🌿 Calculator Volum Ghiveci & Repotting Cost</h2>
 
   <table>
+    <tr><th colspan="2">🌱 Pot & Soil Info</th></tr>
     <tr>
-      <td>Diametrul ghiveciului (cm):</td>
+      <td>Diametru Ghiveci (cm):</td>
       <td><input type="number" id="diameter" /></td>
     </tr>
     <tr>
-      <td>Înălțimea ghiveciului (cm):</td>
+      <td>Înălțime Ghiveci (cm):</td>
       <td><input type="number" id="height" /></td>
     </tr>
     <tr>
-      <td>Preț per litru de mix de sol (RON):</td>
+      <td>Preț mix de sol (RON/litru):</td>
       <td><input type="number" id="pricePerLiter" step="0.01" /></td>
     </tr>
+    <tr><th colspan="2">🌼 Extras & Tratamente</th></tr>
     <tr>
-      <td><label><input type="checkbox" id="bioNeem" /> Tratament BioNeem</label></td>
-      <td>+25 RON</td>
+      <td><label>Tratament BioNeem</label></td>
+      <td><input type="checkbox" id="bioNeem" /> +25 RON</td>
     </tr>
     <tr>
-      <td><label><input type="checkbox" id="minimumFee" /> Taxă minimă intervenție</label></td>
-      <td>+25 RON</td>
+      <td><label>Taxă Minimă Intervenție</label></td>
+      <td><input type="checkbox" id="minimumFee" /> +25 RON</td>
     </tr>
     <tr>
-      <td>Protocol Daunatori:</td>
+      <td>Protocol Dăunători:</td>
       <td><input type="number" id="protocolCount" min="0" value="0" /> x 45 RON</td>
     </tr>
     <tr>
-      <td><label><input type="checkbox" id="fertilizare" /> Fertilizare</label></td>
-      <td>+10 RON</td>
+      <td><label>Fertilizare</label></td>
+      <td><input type="checkbox" id="fertilizare" /> +10 RON</td>
     </tr>
     <tr>
-      <td><label><input type="checkbox" id="stimulator" /> Stimulator</label></td>
-      <td>+15 RON</td>
+      <td><label>Stimulator</label></td>
+      <td><input type="checkbox" id="stimulator" /> +15 RON</td>
     </tr>
     <tr>
-      <td><label><input type="checkbox" id="sterilizare" /> Sterilizare</label></td>
-      <td>+45 RON</td>
+      <td><label>Stilizare</label></td>
+      <td><input type="checkbox" id="sterilizare" /> +45 RON</td>
     </tr>
     <tr>
       <td>Accesorii Extra:</td>
       <td><input type="number" id="extraAccessories" min="0" value="0" step="0.01" /> RON</td>
     </tr>
     <tr>
-      <td>Zile de cazare:</td>
+      <td>Zile de Cazare:</td>
       <td><input type="number" id="zileCazare" min="0" value="0" /> x 5 RON</td>
     </tr>
     <tr>
-      <td colspan="2">Insecticid/Fungicid/Acaricid/Antibacterian (20 RON fiecare):<br>
+      <td colspan="2">
+        Tratamente Aditionale (20 RON fiecare):<br/>
         <label><input type="checkbox" class="treatmentOption" /> Insecticid</label>
         <label><input type="checkbox" class="treatmentOption" /> Fungicid</label>
         <label><input type="checkbox" class="treatmentOption" /> Acaricid</label>
@@ -75,103 +149,101 @@
     </tr>
   </table>
 
-  <button onclick="calculate()">Calculează</button>
+  <button onclick="calculate()">🌻 Calculează</button>
 
   <div class="result" id="volumeResult"></div>
   <div class="result" id="priceResult"></div>
   <div id="breakdownTable"></div>
 
-  <img src="https://file.app.ikea.cn/cn/en/images/products/citrusfrukt-plant-pot-with-saucer-in-outdoor-grey__1126483_pe875747_s5.jpg" alt="How to measure a plant pot - diagram" />
+<script>
+  function calculate() {
+    const d = parseFloat(document.getElementById("diameter").value);
+    const h = parseFloat(document.getElementById("height").value);
+    const pricePerLiter = parseFloat(document.getElementById("pricePerLiter").value);
+    const addBioNeem = document.getElementById("bioNeem").checked;
+    const addMinimumFee = document.getElementById("minimumFee").checked;
+    const protocolCount = parseInt(document.getElementById("protocolCount").value) || 0;
+    const addFert = document.getElementById("fertilizare").checked;
+    const addStim = document.getElementById("stimulator").checked;
+    const addSter = document.getElementById("sterilizare").checked;
+    const extraAccessories = parseFloat(document.getElementById("extraAccessories").value) || 0;
+    const zileCazare = parseInt(document.getElementById("zileCazare").value) || 0;
+    const treatmentOptions = document.querySelectorAll('.treatmentOption:checked');
 
-  <script>
-    function calculate() {
-      const d = parseFloat(document.getElementById("diameter").value);
-      const h = parseFloat(document.getElementById("height").value);
-      const pricePerLiter = parseFloat(document.getElementById("pricePerLiter").value);
-      const addBioNeem = document.getElementById("bioNeem").checked;
-      const addMinimumFee = document.getElementById("minimumFee").checked;
-
-      const protocolCount = parseInt(document.getElementById("protocolCount").value) || 0;
-      const addFert = document.getElementById("fertilizare").checked;
-      const addStim = document.getElementById("stimulator").checked;
-      const addSter = document.getElementById("sterilizare").checked;
-
-      const extraAccessories = parseFloat(document.getElementById("extraAccessories").value) || 0;
-      const zileCazare = parseInt(document.getElementById("zileCazare").value) || 0;
-
-      const treatmentOptions = document.querySelectorAll('.treatmentOption:checked');
-      const treatmentCount = treatmentOptions.length;
-
-      if (!d || !h || !pricePerLiter) {
-        alert("Te rog completează toate câmpurile.");
-        return;
-      }
-
-      const r = d / 2;
-      const volume = Math.PI * r * r * h / 1000;
-      let cost = 0;
-
-      const breakdown = [];
-
-      const soilCost = volume * pricePerLiter;
-      cost += soilCost;
-      breakdown.push(["Mix de sol", soilCost.toFixed(2) + " RON"]);
-
-      if (addBioNeem) {
-        cost += 25;
-        breakdown.push(["Tratament BioNeem", "25 RON"]);
-      }
-      if (addMinimumFee) {
-        cost += 25;
-        breakdown.push(["Taxă minimă intervenție", "25 RON"]);
-      }
-
-      if (protocolCount > 0) {
-        const val = protocolCount * 45;
-        cost += val;
-        breakdown.push([`Protocol Daunatori x${protocolCount}`, val + " RON"]);
-      }
-
-      if (addFert) {
-        cost += 10;
-        breakdown.push(["Fertilizare", "10 RON"]);
-      }
-      if (addStim) {
-        cost += 15;
-        breakdown.push(["Stimulator", "15 RON"]);
-      }
-      if (addSter) {
-        cost += 45;
-        breakdown.push(["Sterilizare", "45 RON"]);
-      }
-
-      if (extraAccessories > 0) {
-        cost += extraAccessories;
-        breakdown.push(["Accesorii Extra", extraAccessories.toFixed(2) + " RON"]);
-      }
-
-      if (zileCazare > 0) {
-        const val = zileCazare * 5;
-        cost += val;
-        breakdown.push([`Zile de cazare x${zileCazare}`, val + " RON"]);
-      }
-
-      if (treatmentCount > 0) {
-        const val = treatmentCount * 20;
-        cost += val;
-        breakdown.push(["Insecticid/Fungicid/etc", val + " RON"]);
-      }
-
-      document.getElementById("volumeResult").innerText = `🧪 Volum: ${volume.toFixed(2)} litri`;
-      document.getElementById("priceResult").innerText = `💰 Cost estimativ total: ${cost.toFixed(2)} RON`;
-
-      let breakdownHTML = "<h3>📊 Detaliere cost:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
-      breakdown.forEach(([desc, val]) => {
-        breakdownHTML += `<tr><td>${desc}</td><td>${val}</td></tr>`;
-      });
-      breakdownHTML += `<tr><th>Total</th><th>${cost.toFixed(2)} RON</th></tr></table>`;
-      document.getElementById("breakdownTable").innerHTML = breakdownHTML;
+    if (!d || !h || !pricePerLiter) {
+      alert("Please fill in all required fields 🌱");
+      return;
     }
-  </script>
+
+    const r = d / 2;
+    const volume = Math.PI * r * r * h / 1000;
+    let cost = 0;
+    const breakdown = [];
+
+    const soilCost = volume * pricePerLiter;
+    cost += soilCost;
+    breakdown.push(["Mix de sol", soilCost.toFixed(2) + " RON"]);
+
+    if (addBioNeem) {
+      cost += 25;
+      breakdown.push(["Tratament BioNeem", "25 RON"]);
+    }
+    if (addMinimumFee) {
+      cost += 25;
+      breakdown.push(["Taxă Minimă Intervenție", "25 RON"]);
+    }
+    if (protocolCount > 0) {
+      const val = protocolCount * 45;
+      cost += val;
+      breakdown.push([`Protocol Dăunători x${protocolCount}`, val + " RON"]);
+    }
+    if (addFert) {
+      cost += 10;
+      breakdown.push(["Fertilizare", "10 RON"]);
+    }
+    if (addStim) {
+      cost += 15;
+      breakdown.push(["Stimulator", "15 RON"]);
+    }
+    if (addSter) {
+      cost += 45;
+      breakdown.push(["Stilizare", "45 RON"]);
+    }
+    if (extraAccessories > 0) {
+      cost += extraAccessories;
+      breakdown.push(["Accesorii Extra", extraAccessories.toFixed(2) + " RON"]);
+    }
+    if (zileCazare > 0) {
+      const val = zileCazare * 5;
+      cost += val;
+      breakdown.push([`Zile de Cazare x${zileCazare}`, val + " RON"]);
+    }
+
+    // Tratamente Aditionale breakdown
+    const treatmentMap = {
+      "Insecticid": "Insecticid",
+      "Fungicid": "Fungicid",
+      "Acaricid": "Acaricid",
+      "Antibacterian": "Antibacterian"
+    };
+
+    treatmentOptions.forEach(option => {
+      const label = option.parentNode.textContent.trim();
+      cost += 20;
+      breakdown.push([treatmentMap[label] || "🧪 Tratament", "20 RON"]);
+    });
+
+    document.getElementById("volumeResult").innerText = `🌊 Volum: ${volume.toFixed(2)} litri`;
+    document.getElementById("priceResult").innerText = `💰 Cost Estimat Total: ${cost.toFixed(2)} RON`;
+
+    let breakdownHTML = "<h3>📊 Detaliere Costuri:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
+    breakdown.forEach(([desc, val]) => {
+      breakdownHTML += `<tr><td>${desc}</td><td>${val}</td></tr>`;
+    });
+    breakdownHTML += `<tr><th>Total</th><th>${cost.toFixed(2)} RON</th></tr></table>`;
+    document.getElementById("breakdownTable").innerHTML = breakdownHTML;
+  }
+</script>
+
 </body>
 </html>
