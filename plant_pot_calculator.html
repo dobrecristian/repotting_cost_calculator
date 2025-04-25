@@ -236,7 +236,7 @@
     document.getElementById("volumeResult").innerText = `🌊 Volum: ${volume.toFixed(2)} litri`;
     document.getElementById("priceResult").innerText = `💰 Cost Estimat Total: ${cost.toFixed(2)} RON`;
 
-    let breakdownHTML = "<h3>📊 Detaliere Costuri:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
+    let breakdownHTML = "<h3>📊 Cost Breakdown:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
     breakdown.forEach(([desc, val]) => {
       breakdownHTML += `<tr><td>${desc}</td><td>${val}</td></tr>`;
     });
