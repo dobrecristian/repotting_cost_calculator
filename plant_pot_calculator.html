@@ -216,7 +216,7 @@
     if (zileCazare > 0) {
       const val = zileCazare * 5;
       cost += val;
-      breakdown.push([`🛏️ Zile de Cazare x${zileCazare}`, val + " RON"]);
+      breakdown.push([`Zile de Cazare x${zileCazare}`, val + " RON"]);
     }
 
     // Tratamente Aditionale breakdown
@@ -233,8 +233,8 @@
       breakdown.push([treatmentMap[label] || "🧪 Tratament", "20 RON"]);
     });
 
-    document.getElementById("volumeResult").innerText = `🌊 Volum: ${volume.toFixed(2)} litri`;
-    document.getElementById("priceResult").innerText = `💰 Cost Estimat Total: ${cost.toFixed(2)} RON`;
+    document.getElementById("volumeResult").innerText = `🧪 Volum: ${volume.toFixed(2)} litri`;
+    document.getElementById("priceResult").innerText = `💶 Cost Estimat Total: ${cost.toFixed(2)} RON`;
 
     let breakdownHTML = "<h3>📊 Cost Breakdown:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
     breakdown.forEach(([desc, val]) => {
