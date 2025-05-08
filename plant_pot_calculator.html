@@ -37,15 +37,27 @@
       background-color: #b5e7a0;
       color: #2f4f2f;
     }
+    /* Styled input fields */
     input[type="number"], select {
-      width: 25%;
-      padding: 5px;
+      width: 80%;
+      padding: 8px 10px;
       font-size: 18px;
-      border-radius: 5px;
-      border: 1px solid #bbb;
+      border-radius: 8px;
+      border: 2px solid #cdeac0;
+      background: #f8fff8;
+      color: #2f4f2f;
+      outline: none;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+      margin-top: 3px;
+      margin-bottom: 3px;
+    }
+    input[type="number"]:focus {
+      border-color: #66bb6a;
     }
     label {
       display: block;
+      font-size: 18px;
     }
     button {
       background-color: #66bb6a;
@@ -59,6 +71,10 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #388e3c;
     }
     .result {
       margin-top: 20px;
@@ -104,6 +120,90 @@
     .content img {
       width: 100%;
       border-radius: 8px;
+    }
+
+    /* Custom Checkbox Styles */
+    .custom-checkbox {
+      position: relative;
+      padding-left: 34px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #2f4f2f;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      min-width: 140px;
+      margin-bottom: 6px;
+    }
+    .custom-checkbox input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0; width: 0;
+    }
+    .custom-checkbox .checkmark {
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      height: 22px; width: 22px;
+      background-color: #fff;
+      border: 2px solid #66bb6a;
+      border-radius: 6px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .custom-checkbox input[type="checkbox"]:checked ~ .checkmark {
+      background-color: #66bb6a;
+      border-color: #388e3c;
+    }
+    .custom-checkbox .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    .custom-checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+      display: block;
+    }
+    .custom-checkbox .checkmark:after {
+      left: 7px;
+      top: 3px;
+      width: 6px;
+      height: 12px;
+      border: solid #fff;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+    /* Tratamente Aditionale styling */
+    .treatments-header {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #388e3c;
+      font-size: 20px;
+    }
+    .treatments-header span {
+      font-weight: normal;
+      font-size: 16px;
+      color: #4e944f;
+    }
+    .treatments-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 32px;
+      background: #f8fff8;
+      border: 1px solid #cdeac0;
+      border-radius: 10px;
+      padding: 14px 10px 10px 10px;
+      margin-top: 6px;
+    }
+    /* Extra: align checkbox and price inline for main options */
+    .option-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .option-row .option-price {
+      font-size: 16px;
+      color: #388e3c;
+      margin-left: 6px;
     }
   </style>
 </head>
@@ -172,44 +272,115 @@
   <table>
     <tr><th colspan="2">🌼 Extras & Tratamente</th></tr>
     <tr>
-      <td><label>Tratament BioNeem</label></td>
-      <td><input type="checkbox" id="bioNeem" /> +25 RON</td>
+      <td>
+        <div class="option-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="bioNeem" />
+            <span class="checkmark"></span>
+            Tratament BioNeem
+          </label>
+          <span class="option-price">+25 RON</span>
+        </div>
+      </td>
+      <td>
+        <div class="option-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="minimumFee" />
+            <span class="checkmark"></span>
+            Taxă Minimă Intervenție
+          </label>
+          <span class="option-price">+25 RON</span>
+        </div>
+      </td>
     </tr>
     <tr>
-      <td><label>Taxă Minimă Intervenție</label></td>
-      <td><input type="checkbox" id="minimumFee" /> +25 RON</td>
+      <td>
+        <div class="option-row">
+          <label>
+            Protocol Dăunători:
+            <input type="number" id="protocolCount" min="0" value="0" style="width: 60px; margin-left: 10px;" />
+          </label>
+          <span class="option-price">x 45 RON</span>
+        </div>
+      </td>
+      <td>
+        <div class="option-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="fertilizare" />
+            <span class="checkmark"></span>
+            Fertilizare
+          </label>
+          <span class="option-price">+10 RON</span>
+        </div>
+      </td>
     </tr>
     <tr>
-      <td>Protocol Dăunători:</td>
-      <td><input type="number" id="protocolCount" min="0" value="0" /> x 45 RON</td>
+      <td>
+        <div class="option-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="stimulator" />
+            <span class="checkmark"></span>
+            Stimulator
+          </label>
+          <span class="option-price">+15 RON</span>
+        </div>
+      </td>
+      <td>
+        <div class="option-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="sterilizare" />
+            <span class="checkmark"></span>
+            Stilizare
+          </label>
+          <span class="option-price">+45 RON</span>
+        </div>
+      </td>
     </tr>
     <tr>
-      <td><label>Fertilizare</label></td>
-      <td><input type="checkbox" id="fertilizare" /> +10 RON</td>
-    </tr>
-    <tr>
-      <td><label>Stimulator</label></td>
-      <td><input type="checkbox" id="stimulator" /> +15 RON</td>
-    </tr>
-    <tr>
-      <td><label>Stilizare</label></td>
-      <td><input type="checkbox" id="sterilizare" /> +45 RON</td>
-    </tr>
-    <tr>
-      <td>Accesorii Extra:</td>
-      <td><input type="number" id="extraAccessories" min="0" value="0" step="0.01" /> RON</td>
-    </tr>
-    <tr>
-      <td>Zile de Cazare:</td>
-      <td><input type="number" id="zileCazare" min="0" value="0" /> x 5 RON</td>
+      <td>
+        <div class="option-row">
+          <label>
+            Accesorii Extra:
+            <input type="number" id="extraAccessories" min="0" value="0" step="0.01" style="width: 80px; margin-left: 10px;" />
+          </label>
+          <span class="option-price">RON</span>
+        </div>
+      </td>
+      <td>
+        <div class="option-row">
+          <label>
+            Zile de Cazare:
+            <input type="number" id="zileCazare" min="0" value="0" style="width: 60px; margin-left: 10px;" />
+          </label>
+          <span class="option-price">x 5 RON</span>
+        </div>
+      </td>
     </tr>
     <tr>
       <td colspan="2">
-        Tratamente Aditionale (20 RON fiecare):<br/>
-        <label><input type="checkbox" class="treatmentOption" /> Insecticid</label>
-        <label><input type="checkbox" class="treatmentOption" /> Fungicid</label>
-        <label><input type="checkbox" class="treatmentOption" /> Acaricid</label>
-        <label><input type="checkbox" class="treatmentOption" /> Antibacterian</label>
+        <div class="treatments-header">Tratamente Adiționale <span>(20 RON fiecare):</span></div>
+        <div class="treatments-list">
+          <label class="custom-checkbox">
+            <input type="checkbox" class="treatmentOption" />
+            <span class="checkmark"></span>
+            Insecticid
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" class="treatmentOption" />
+            <span class="checkmark"></span>
+            Fungicid
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" class="treatmentOption" />
+            <span class="checkmark"></span>
+            Acaricid
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" class="treatmentOption" />
+            <span class="checkmark"></span>
+            Antibacterian
+          </label>
+        </div>
       </td>
     </tr>
   </table>
