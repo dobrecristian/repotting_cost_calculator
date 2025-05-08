@@ -9,8 +9,8 @@
     body {
       background: url('https://i.imgur.com/LgrxpLz.png'), #d0f0c0;
       font-family: 'Quicksand', cursive;
-      font-size: 22px;
-      padding: 20px;
+      font-size: 20px; /* was 22px */
+      padding: 12px;   /* was 20px */
       max-width: 900px;
       margin: auto;
       color: #2f4f2f;
@@ -18,56 +18,58 @@
     h2 {
       color: #2e7d32;
       text-align: center;
-      font-size: 36px;
+      font-size: 30px; /* was 36px */
+      margin-bottom: 12px; /* added */
+      margin-top: 12px;    /* added */
     }
     table {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 12px; /* was 20px */
       border-collapse: collapse;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
       overflow: hidden;
     }
     th, td {
-      padding: 12px;
+      padding: 7px 8px; /* was 12px */
       text-align: left;
       border-bottom: 1px solid #ccc;
     }
     th {
       background-color: #b5e7a0;
       color: #2f4f2f;
+      font-size: 18px; /* was default */
     }
-    /* Styled input fields */
     input[type="number"], select {
       width: 80%;
-      padding: 8px 10px;
-      font-size: 18px;
-      border-radius: 8px;
+      padding: 5px 8px; /* was 8px 10px */
+      font-size: 16px;  /* was 18px */
+      border-radius: 6px; /* was 8px */
       border: 2px solid #cdeac0;
       background: #f8fff8;
       color: #2f4f2f;
       outline: none;
       transition: border-color 0.2s;
       box-sizing: border-box;
-      margin-top: 3px;
-      margin-bottom: 3px;
+      margin-top: 1px; /* was 3px */
+      margin-bottom: 1px; /* was 3px */
     }
     input[type="number"]:focus {
       border-color: #66bb6a;
     }
     label {
       display: block;
-      font-size: 18px;
+      font-size: 16px; /* was 18px */
     }
     button {
       background-color: #66bb6a;
       color: white;
-      font-size: 20px;
-      padding: 12px 20px;
+      font-size: 18px; /* was 20px */
+      padding: 8px 16px; /* was 12px 20px */
       border: none;
-      border-radius: 8px;
+      border-radius: 7px; /* was 8px */
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 12px;  /* was 20px */
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -77,33 +79,33 @@
       background-color: #388e3c;
     }
     .result {
-      margin-top: 20px;
+      margin-top: 12px; /* was 20px */
       font-weight: bold;
-      font-size: 24px;
+      font-size: 20px;  /* was 24px */
       text-align: center;
     }
     #breakdownTable table {
       background-color: #f0fff0;
+      margin-top: 7px; /* added */
     }
     img {
       display: block;
-      margin: 30px auto;
+      margin: 18px auto; /* was 30px */
       max-width: 100%;
       border: 2px solid #a5d6a7;
       border-radius: 10px;
     }
-    /* Collapsible button styles */
     .collapsible {
       background-color: #66bb6a;
       color: white;
-      font-size: 18px;
-      padding: 10px;
+      font-size: 16px; /* was 18px */
+      padding: 6px 8px; /* was 10px */
       border: none;
       width: 100%;
       text-align: left;
       cursor: pointer;
-      border-radius: 8px;
-      margin-top: 10px;
+      border-radius: 7px; /* was 8px */
+      margin-top: 6px; /* was 10px */
     }
     .collapsible:after {
       content: ' ▼';
@@ -112,7 +114,7 @@
       content: ' ▲';
     }
     .content {
-      padding: 10px;
+      padding: 7px; /* was 10px */
       display: none;
       overflow: hidden;
       background-color: #f1f1f1;
@@ -121,19 +123,17 @@
       width: 100%;
       border-radius: 8px;
     }
-
-    /* Custom Checkbox Styles */
     .custom-checkbox {
       position: relative;
-      padding-left: 34px;
+      padding-left: 28px; /* was 34px */
       cursor: pointer;
-      font-size: 18px;
+      font-size: 16px;   /* was 18px */
       color: #2f4f2f;
       user-select: none;
       display: flex;
       align-items: center;
-      min-width: 140px;
-      margin-bottom: 6px;
+      min-width: 120px;  /* was 140px */
+      margin-bottom: 2px; /* was 6px */
     }
     .custom-checkbox input[type="checkbox"] {
       position: absolute;
@@ -145,10 +145,10 @@
       position: absolute;
       left: 0; top: 50%;
       transform: translateY(-50%);
-      height: 22px; width: 22px;
+      height: 18px; width: 18px; /* was 22px */
       background-color: #fff;
       border: 2px solid #66bb6a;
-      border-radius: 6px;
+      border-radius: 5px; /* was 6px */
       transition: background 0.2s, border-color 0.2s;
     }
     .custom-checkbox input[type="checkbox"]:checked ~ .checkmark {
@@ -164,53 +164,49 @@
       display: block;
     }
     .custom-checkbox .checkmark:after {
-      left: 7px;
-      top: 3px;
-      width: 6px;
-      height: 12px;
+      left: 5px; /* was 7px */
+      top: 2px;  /* was 3px */
+      width: 5px; /* was 6px */
+      height: 10px; /* was 12px */
       border: solid #fff;
-      border-width: 0 3px 3px 0;
+      border-width: 0 2px 2px 0; /* was 0 3px 3px 0 */
       transform: rotate(45deg);
     }
-    /* Tratamente Aditionale styling */
     .treatments-header {
       font-weight: bold;
-      margin-bottom: 8px;
+      margin-bottom: 4px; /* was 8px */
       color: #388e3c;
-      font-size: 20px;
+      font-size: 17px; /* was 20px */
     }
     .treatments-header span {
       font-weight: normal;
-      font-size: 16px;
+      font-size: 13px; /* was 16px */
       color: #4e944f;
     }
     .treatments-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px 32px;
+      gap: 8px 16px; /* was 18px 32px */
       background: #f8fff8;
       border: 1px solid #cdeac0;
-      border-radius: 10px;
-      padding: 14px 10px 10px 10px;
-      margin-top: 6px;
+      border-radius: 8px; /* was 10px */
+      padding: 7px 7px 5px 7px; /* was 14px 10px 10px 10px */
+      margin-top: 2px; /* was 6px */
     }
-    /* Extra: align checkbox and price inline for main options */
     .option-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px; /* was 10px */
     }
     .option-row .option-price {
-      font-size: 16px;
+      font-size: 14px; /* was 16px */
       color: #388e3c;
-      margin-left: 6px;
+      margin-left: 3px; /* was 6px */
     }
   </style>
 </head>
 <body>
-
-  <img src="https://sonoregreens.com/wp-content/uploads/2022/08/sonoregreens-logo-3.png" alt="Logo" style="max-width: 200px; display: block; margin: 0 auto;">
-
+  <img src="https://sonoregreens.com/wp-content/uploads/2022/08/sonoregreens-logo-3.png" alt="Logo" style="max-width: 160px; display: block; margin: 0 auto;">
   <h2>🌿 Calculator Volum Ghiveci & Repotting Cost</h2>
 
   <!-- START: Pot & Soil Info section with both circular and rectangular pots -->
@@ -298,7 +294,7 @@
         <div class="option-row">
           <label>
             Protocol Dăunători:
-            <input type="number" id="protocolCount" min="0" value="0" style="width: 60px; margin-left: 10px;" />
+            <input type="number" id="protocolCount" min="0" value="0" style="width: 48px; margin-left: 7px;" />
           </label>
           <span class="option-price">x 45 RON</span>
         </div>
@@ -341,7 +337,7 @@
         <div class="option-row">
           <label>
             Accesorii Extra:
-            <input type="number" id="extraAccessories" min="0" value="0" step="0.01" style="width: 80px; margin-left: 10px;" />
+            <input type="number" id="extraAccessories" min="0" value="0" step="0.01" style="width: 60px; margin-left: 7px;" />
           </label>
           <span class="option-price">RON</span>
         </div>
@@ -350,7 +346,7 @@
         <div class="option-row">
           <label>
             Zile de Cazare:
-            <input type="number" id="zileCazare" min="0" value="0" style="width: 60px; margin-left: 10px;" />
+            <input type="number" id="zileCazare" min="0" value="0" style="width: 48px; margin-left: 7px;" />
           </label>
           <span class="option-price">x 5 RON</span>
         </div>
