@@ -78,6 +78,16 @@
     button:hover {
       background-color: #388e3c;
     }
+    .reset-btn {
+      background-color: #bdbdbd;
+      color: #2f4f2f;
+      margin-top: 6px;
+      font-size: 16px;
+    }
+    .reset-btn:hover {
+      background-color: #888;
+      color: #fff;
+    }
     .result {
       margin-top: 12px; /* was 20px */
       font-weight: bold;
@@ -383,6 +393,9 @@
 
   <button onclick="calculate()">
     🌻 Calculează
+  </button>
+  <button onclick="window.location.reload()">
+    🔄 Resetează
   </button>
 
   <div class="result" id="volumeResult"></div>
