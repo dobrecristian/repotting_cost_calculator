@@ -9,8 +9,8 @@
     body {
       background: url('https://i.imgur.com/LgrxpLz.png'), #d0f0c0;
       font-family: 'Quicksand', cursive;
-      font-size: 20px; /* was 22px */
-      padding: 12px;   /* was 20px */
+      font-size: 20px;
+      padding: 12px;
       max-width: 900px;
       margin: auto;
       color: #2f4f2f;
@@ -18,89 +18,93 @@
     h2 {
       color: #2e7d32;
       text-align: center;
-      font-size: 30px; /* was 36px */
-      margin-bottom: 12px; /* added */
-      margin-top: 12px;    /* added */
+      font-size: 30px;
+      margin-bottom: 12px;
+      margin-top: 12px;
     }
     table {
       width: 100%;
-      margin-top: 12px; /* was 20px */
+      margin-top: 12px;
       border-collapse: collapse;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
       overflow: hidden;
     }
     th, td {
-      padding: 7px 8px; /* was 12px */
+      padding: 7px 8px;
       text-align: left;
       border-bottom: 1px solid #ccc;
     }
     th {
       background-color: #b5e7a0;
       color: #2f4f2f;
-      font-size: 18px; /* was default */
+      font-size: 18px;
     }
+    /* Greenhouse gradient for input fields only */
     input[type="number"], select {
       width: 80%;
-      padding: 5px 8px; /* was 8px 10px */
-      font-size: 16px;  /* was 18px */
-      border-radius: 6px; /* was 8px */
+      padding: 5px 8px;
+      font-size: 16px;
+      border-radius: 6px;
       border: 2px solid #cdeac0;
-      background: #f8fff8;
+      background: linear-gradient(120deg, #eafaf1 60%, #cdeac0 100%);
       color: #2f4f2f;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       box-sizing: border-box;
-      margin-top: 1px; /* was 3px */
-      margin-bottom: 1px; /* was 3px */
+      margin-top: 1px;
+      margin-bottom: 1px;
+      box-shadow: 0 1px 4px 0 rgba(76,175,80,0.06);
     }
-    input[type="number"]:focus {
+    input[type="number"]:focus, select:focus {
       border-color: #66bb6a;
+      box-shadow: 0 0 0 2px #b5e7a0;
     }
-    label {
-      display: block;
-      font-size: 16px; /* was 18px */
-    }
+    /* Original button styles */
     button {
       background-color: #66bb6a;
       color: white;
-      font-size: 18px; /* was 20px */
-      padding: 8px 16px; /* was 12px 20px */
+      font-size: 18px;
+      padding: 8px 16px;
       border: none;
-      border-radius: 7px; /* was 8px */
+      border-radius: 7px;
       cursor: pointer;
-      margin-top: 12px;  /* was 20px */
+      margin-top: 12px;
       display: block;
       margin-left: auto;
       margin-right: auto;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
+      font-weight: 600;
     }
-    button:hover {
+    button:hover, button:focus {
       background-color: #388e3c;
+      transform: scale(1.03);
     }
     .reset-btn {
-      background-color: #bdbdbd;
+      background-color: #b5e7a0;
       color: #2f4f2f;
       margin-top: 6px;
       font-size: 16px;
+      font-weight: 600;
     }
-    .reset-btn:hover {
-      background-color: #888;
+    .reset-btn:hover, .reset-btn:focus {
+      background-color: #388e3c;
       color: #fff;
+      transform: scale(1.03);
     }
     .result {
-      margin-top: 12px; /* was 20px */
+      margin-top: 12px;
       font-weight: bold;
-      font-size: 20px;  /* was 24px */
+      font-size: 20px;
       text-align: center;
     }
     #breakdownTable table {
       background-color: #f0fff0;
-      margin-top: 7px; /* added */
+      margin-top: 7px;
     }
     img {
       display: block;
-      margin: 18px auto; /* was 30px */
+      margin: 18px auto;
       max-width: 100%;
       border: 2px solid #a5d6a7;
       border-radius: 10px;
@@ -108,14 +112,14 @@
     .collapsible {
       background-color: #66bb6a;
       color: white;
-      font-size: 16px; /* was 18px */
-      padding: 6px 8px; /* was 10px */
+      font-size: 16px;
+      padding: 6px 8px;
       border: none;
       width: 100%;
       text-align: left;
       cursor: pointer;
-      border-radius: 7px; /* was 8px */
-      margin-top: 6px; /* was 10px */
+      border-radius: 7px;
+      margin-top: 6px;
     }
     .collapsible:after {
       content: ' ▼';
@@ -124,7 +128,7 @@
       content: ' ▲';
     }
     .content {
-      padding: 7px; /* was 10px */
+      padding: 7px;
       display: none;
       overflow: hidden;
       background-color: #f1f1f1;
@@ -135,15 +139,15 @@
     }
     .custom-checkbox {
       position: relative;
-      padding-left: 28px; /* was 34px */
+      padding-left: 28px;
       cursor: pointer;
-      font-size: 16px;   /* was 18px */
+      font-size: 16px;
       color: #2f4f2f;
       user-select: none;
       display: flex;
       align-items: center;
-      min-width: 120px;  /* was 140px */
-      margin-bottom: 2px; /* was 6px */
+      min-width: 120px;
+      margin-bottom: 2px;
     }
     .custom-checkbox input[type="checkbox"] {
       position: absolute;
@@ -155,10 +159,10 @@
       position: absolute;
       left: 0; top: 50%;
       transform: translateY(-50%);
-      height: 18px; width: 18px; /* was 22px */
+      height: 18px; width: 18px;
       background-color: #fff;
       border: 2px solid #66bb6a;
-      border-radius: 5px; /* was 6px */
+      border-radius: 5px;
       transition: background 0.2s, border-color 0.2s;
     }
     .custom-checkbox input[type="checkbox"]:checked ~ .checkmark {
@@ -174,44 +178,44 @@
       display: block;
     }
     .custom-checkbox .checkmark:after {
-      left: 5px; /* was 7px */
-      top: 2px;  /* was 3px */
-      width: 5px; /* was 6px */
-      height: 10px; /* was 12px */
+      left: 5px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
       border: solid #fff;
-      border-width: 0 2px 2px 0; /* was 0 3px 3px 0 */
+      border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
     .treatments-header {
       font-weight: bold;
-      margin-bottom: 4px; /* was 8px */
+      margin-bottom: 4px;
       color: #388e3c;
-      font-size: 17px; /* was 20px */
+      font-size: 17px;
     }
     .treatments-header span {
       font-weight: normal;
-      font-size: 13px; /* was 16px */
+      font-size: 13px;
       color: #4e944f;
     }
     .treatments-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 16px; /* was 18px 32px */
+      gap: 8px 16px;
       background: #f8fff8;
       border: 1px solid #cdeac0;
-      border-radius: 8px; /* was 10px */
-      padding: 7px 7px 5px 7px; /* was 14px 10px 10px 10px */
-      margin-top: 2px; /* was 6px */
+      border-radius: 8px;
+      padding: 7px 7px 5px 7px;
+      margin-top: 2px;
     }
     .option-row {
       display: flex;
       align-items: center;
-      gap: 6px; /* was 10px */
+      gap: 6px;
     }
     .option-row .option-price {
-      font-size: 14px; /* was 16px */
+      font-size: 14px;
       color: #388e3c;
-      margin-left: 3px; /* was 6px */
+      margin-left: 3px;
     }
   </style>
 </head>
@@ -394,7 +398,7 @@
   <button onclick="calculate()">
     🌻 Calculează
   </button>
-  <button onclick="window.location.reload()">
+  <button class="reset-btn" onclick="window.location.reload()">
     🔄 Resetează
   </button>
 
@@ -452,12 +456,12 @@
       potType = "Ghiveci dreptunghiular";
       volumeDetails = `🧪 Volum: ${volume.toFixed(2)} litri (${potType})`;
     } else {
-      alert("Completeaza masuratorile pentru un ghiveci circular sau dreptunghiular și prețul mixului de sol (RON/litru) 🌱");
+      alert("Te rugăm să completezi fie datele pentru ghiveci circular, fie pentru dreptunghiular, și prețul pe litru 🌱");
       return;
     }
 
     if (!pricePerLiter) {
-      alert("Completeaza și prețul mixului de sol (RON/litru) 🌱");
+      alert("Te rugăm să completezi și prețul mixului de sol (RON/litru) 🌱");
       return;
     }
 
