@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,13 +15,11 @@
       margin: auto;
       color: #2f4f2f;
     }
-
     h2 {
       color: #2e7d32;
       text-align: center;
       font-size: 36px;
     }
-
     table {
       width: 100%;
       margin-top: 20px;
@@ -30,18 +28,15 @@
       border-radius: 12px;
       overflow: hidden;
     }
-
     th, td {
       padding: 12px;
       text-align: left;
       border-bottom: 1px solid #ccc;
     }
-
     th {
       background-color: #b5e7a0;
       color: #2f4f2f;
     }
-
     input[type="number"], select {
       width: 25%;
       padding: 5px;
@@ -49,11 +44,9 @@
       border-radius: 5px;
       border: 1px solid #bbb;
     }
-
     label {
       display: block;
     }
-
     button {
       background-color: #66bb6a;
       color: white;
@@ -67,18 +60,15 @@
       margin-left: auto;
       margin-right: auto;
     }
-
     .result {
       margin-top: 20px;
       font-weight: bold;
       font-size: 24px;
       text-align: center;
     }
-
     #breakdownTable table {
       background-color: #f0fff0;
     }
-
     img {
       display: block;
       margin: 30px auto;
@@ -86,7 +76,6 @@
       border: 2px solid #a5d6a7;
       border-radius: 10px;
     }
-
     /* Collapsible button styles */
     .collapsible {
       background-color: #66bb6a;
@@ -100,22 +89,18 @@
       border-radius: 8px;
       margin-top: 10px;
     }
-
     .collapsible:after {
       content: ' ▼';
     }
-
     .active:after {
       content: ' ▲';
     }
-
     .content {
       padding: 10px;
       display: none;
       overflow: hidden;
       background-color: #f1f1f1;
     }
-
     .content img {
       width: 100%;
       border-radius: 8px;
@@ -124,12 +109,18 @@
 </head>
 <body>
 
-    <img src="https://sonoregreens.com/wp-content/uploads/2022/08/sonoregreens-logo-3.png" alt="Logo" style="max-width: 200px; display: block; margin: 0 auto;">
+  <img src="https://sonoregreens.com/wp-content/uploads/2022/08/sonoregreens-logo-3.png" alt="Logo" style="max-width: 200px; display: block; margin: 0 auto;">
 
   <h2>🌿 Calculator Volum Ghiveci & Repotting Cost</h2>
 
+  <!-- START: Pot & Soil Info section with both circular and rectangular pots -->
   <table>
     <tr><th colspan="2">🌱 Pot & Soil Info</th></tr>
+    <tr>
+      <td colspan="2" style="background:#f8fff8;">
+        <b>Ghiveci Circular</b>
+      </td>
+    </tr>
     <tr>
       <td>Diametru Ghiveci (cm):</td>
       <td><input type="number" id="diameter" /></td>
@@ -139,19 +130,46 @@
       <td><input type="number" id="height" /></td>
     </tr>
     <tr>
-      <td>Preț mix de sol (RON/litru):</td>
-      <td><input type="number" id="pricePerLiter" step="0.01" /></td>
-    </tr>
-    <!-- Collapsible button starts here -->
-    <tr>
       <td colspan="2">
-        <button class="collapsible">Cum sa masori un ghiveci</button>
+        <button class="collapsible">Cum sa masori un ghiveci circular</button>
         <div class="content">
-          <img src="https://i.imgur.com/XwDhsjJ.png" alt="Cum sa masori un ghiveci">
+          <img src="https://i.imgur.com/XwDhsjJ.png" alt="Cum sa masori un ghiveci circular">
         </div>
       </td>
     </tr>
-    <!-- Collapsible button ends here -->
+    <tr>
+      <td colspan="2" style="background:#f8fff8;">
+        <b>Ghiveci Dreptunghiular</b>
+      </td>
+    </tr>
+    <tr>
+      <td>Lungime Ghiveci (cm):</td>
+      <td><input type="number" id="lengthRect" /></td>
+    </tr>
+    <tr>
+      <td>Lățime Ghiveci (cm):</td>
+      <td><input type="number" id="widthRect" /></td>
+    </tr>
+    <tr>
+      <td>Înălțime Ghiveci (cm):</td>
+      <td><input type="number" id="heightRect" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button class="collapsible">Cum sa masori un ghiveci dreptunghiular</button>
+        <div class="content">
+          <img src="https://i.imgur.com/2CRuDR6.png" alt="Cum sa masori un ghiveci dreptunghiular">
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Preț mix de sol (RON/litru):</td>
+      <td><input type="number" id="pricePerLiter" step="0.01" /></td>
+    </tr>
+  </table>
+  <!-- END: Pot & Soil Info section -->
+
+  <table>
     <tr><th colspan="2">🌼 Extras & Tratamente</th></tr>
     <tr>
       <td><label>Tratament BioNeem</label></td>
@@ -196,7 +214,9 @@
     </tr>
   </table>
 
-  <button onclick="calculate()">🌻 Calculează</button>
+  <button onclick="calculate()">
+    🌻 Calculează
+  </button>
 
   <div class="result" id="volumeResult"></div>
   <div class="result" id="priceResult"></div>
@@ -218,8 +238,12 @@
   }
 
   function calculate() {
+    // Read all inputs
     const d = parseFloat(document.getElementById("diameter").value);
     const h = parseFloat(document.getElementById("height").value);
+    const lRect = parseFloat(document.getElementById("lengthRect").value);
+    const wRect = parseFloat(document.getElementById("widthRect").value);
+    const hRect = parseFloat(document.getElementById("heightRect").value);
     const pricePerLiter = parseFloat(document.getElementById("pricePerLiter").value);
     const addBioNeem = document.getElementById("bioNeem").checked;
     const addMinimumFee = document.getElementById("minimumFee").checked;
@@ -231,13 +255,32 @@
     const zileCazare = parseInt(document.getElementById("zileCazare").value) || 0;
     const treatmentOptions = document.querySelectorAll('.treatmentOption:checked');
 
-    if (!d || !h || !pricePerLiter) {
-      alert("Please fill in all required fields 🌱");
+    // Decide which pot is used (priority: circular if both filled)
+    let volume = 0;
+    let potType = "";
+    let volumeDetails = "";
+
+    if (d && h) {
+      // Circular pot
+      const r = d / 2;
+      volume = Math.PI * r * r * h / 1000;
+      potType = "Ghiveci circular";
+      volumeDetails = `🧪 Volum: ${volume.toFixed(2)} litri (${potType})`;
+    } else if (lRect && wRect && hRect) {
+      // Rectangular pot
+      volume = lRect * wRect * hRect / 1000;
+      potType = "Ghiveci dreptunghiular";
+      volumeDetails = `🧪 Volum: ${volume.toFixed(2)} litri (${potType})`;
+    } else {
+      alert("Te rugăm să completezi fie datele pentru ghiveci circular, fie pentru dreptunghiular, și prețul pe litru 🌱");
       return;
     }
 
-    const r = d / 2;
-    const volume = Math.PI * r * r * h / 1000;
+    if (!pricePerLiter) {
+      alert("Te rugăm să completezi și prețul mixului de sol (RON/litru) 🌱");
+      return;
+    }
+
     let cost = 0;
     const breakdown = [];
 
@@ -294,7 +337,7 @@
       breakdown.push([treatmentMap[label] || "🧪 Tratament", "20 RON"]);
     });
 
-    document.getElementById("volumeResult").innerText = `🧪 Volum: ${volume.toFixed(2)} litri`;
+    document.getElementById("volumeResult").innerText = volumeDetails;
     document.getElementById("priceResult").innerText = `💶 Cost Estimat Total: ${cost.toFixed(2)} RON`;
 
     let breakdownHTML = "<h3>📊 Cost Breakdown:</h3><table><tr><th>Serviciu</th><th>Cost</th></tr>";
